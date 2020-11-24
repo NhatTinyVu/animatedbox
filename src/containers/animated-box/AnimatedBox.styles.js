@@ -16,7 +16,7 @@ export default StyleSheet.create({
     right: 0,
     padding: 8,
   },
-  velocity: {
+  timing: {
     textAlign: 'center',
   },
 });
