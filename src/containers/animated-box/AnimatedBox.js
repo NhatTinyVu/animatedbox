@@ -7,30 +7,30 @@ import styles from './AnimatedBox.styles';
 
 const AnimatedBox = () => {
   const [coords, setCoords] = useState({x: 0, y: 0});
-  const [velocity, setVelocity] = useState(1000);
+  const [timing, setTiming] = useState(500);
   const handleTouch = useHandleTouch({setCoords});
 
   return (
     <SafeAreaView style={styles.safeView}>
-      <TouchableWithoutFeedback onPress={handleTouch}>
+      <TouchableWithoutFeedback onPressIn={handleTouch}>
         <View style={styles.container}>
           <AnimatedBoxComponent
             translateX={coords.x}
             translateY={coords.y}
-            velocity={velocity}
+            timing={timing}
           />
-          <View style={styles.absoluteBottomContainer}>
-            <Slider
-              step={1}
-              value={velocity}
-              minimumValue={0}
-              maximumValue={10000}
-              onValueChange={setVelocity}
-            />
-            <Text style={styles.velocity}>{velocity}</Text>
-          </View>
         </View>
       </TouchableWithoutFeedback>
+      <View style={styles.absoluteBottomContainer}>
+        <Slider
+          step={1}
+          value={timing}
+          minimumValue={10}
+          maximumValue={2000}
+          onValueChange={setTiming}
+        />
+        <Text style={styles.timing}>Timing: {timing}</Text>
+      </View>
     </SafeAreaView>
   );
 };
